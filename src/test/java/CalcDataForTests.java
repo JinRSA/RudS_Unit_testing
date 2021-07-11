@@ -90,7 +90,7 @@ public class CalcDataForTests {
     }
 
     @DataProvider
-    public static Object[][] calculateUncorrectData() {
+    public static Object[][] calculateIncorrectData() {
         return new Object[][]{
                 {"Integer.MIN_VALUE", "Integer.MAX_VALUE"},
                 {"0xFF", "0x11"},

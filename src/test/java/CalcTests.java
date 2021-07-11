@@ -66,11 +66,23 @@ public void testAddNotEquals(final Object notExpected, final Object num1, final 
         new Calc().div(1, 0);
     }
 
-    @Test(dataProvider = "calculateUncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
-    public void testUncorrectData(final Object num1, final Object num2) {
+    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
+    public void testAddIncorrectData(final Object num1, final Object num2) {
         new Calc().add(num1, num2);
+    }
+
+    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
+    public void testMultIncorrectData(final Object num1, final Object num2) {
         new Calc().mult(num1, num2);
+    }
+
+    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
+    public void testDivIncorrectData(final Object num1, final Object num2) {
         new Calc().div(num1, num2);
+    }
+
+    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
+    public void testSubIncorrectData(final Object num1, final Object num2) {
         new Calc().sub(num1, num2);
     }
 //endregion
