@@ -30,14 +30,13 @@ public class CalcTests {
         Assert.assertEquals(expected, actual,
                 "Значения не равны (должны быть равными)! " + "Фактическое = " + actual + ", ожидаемое = " + expected);
     }
-//endregion
-//region Negative.
-@Test(dataProvider = "calculateAddNotEqualsData", dataProviderClass = CalcDataForTests.class)
-public void testAddNotEquals(final Object notExpected, final Object num1, final Object num2) {
-    Object actual = new Calc().add(num1, num2);
-    Assert.assertNotEquals(notExpected, actual,
-            "Значения равны (должны быть разными)! " + "Фактическое = " + actual + ", неожидаемое = " + notExpected);
-}
+
+    @Test(dataProvider = "calculateAddNotEqualsData", dataProviderClass = CalcDataForTests.class)
+    public void testAddNotEquals(final Object notExpected, final Object num1, final Object num2) {
+        Object actual = new Calc().add(num1, num2);
+        Assert.assertNotEquals(notExpected, actual,
+                "Значения равны (должны быть разными)! " + "Фактическое = " + actual + ", неожидаемое = " + notExpected);
+    }
 
     @Test(dataProvider = "calculateMultNotEqualsData", dataProviderClass = CalcDataForTests.class, priority = 1)
     public void testMultNotEquals(final Object notExpected, final Object num1, final Object num2) {
@@ -60,29 +59,17 @@ public void testAddNotEquals(final Object notExpected, final Object num1, final 
                 "Значения равны (должны быть разными)! " + "Фактическое = " + actual + ", неожидаемое = " + notExpected);
     }
 //endregion
-//region Exceptions.
-    @Test(expectedExceptions = ArithmeticException.class, priority = 2)
+//region Negative.
+    @Test(expectedExceptionsMessageRegExp = "Деление на ноль", priority = 2)
     public void testDivByZero() {
         new Calc().div(1, 0);
     }
 
-    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
-    public void testAddIncorrectData(final Object num1, final Object num2) {
+    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptionsMessageRegExp = "Некорректный ввод", priority = 4)
+    public void testIncorrectData(final Object num1, final Object num2) {
         new Calc().add(num1, num2);
-    }
-
-    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
-    public void testMultIncorrectData(final Object num1, final Object num2) {
         new Calc().mult(num1, num2);
-    }
-
-    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
-    public void testDivIncorrectData(final Object num1, final Object num2) {
         new Calc().div(num1, num2);
-    }
-
-    @Test(dataProvider = "calculateIncorrectData", dataProviderClass = CalcDataForTests.class, expectedExceptions = ClassCastException.class, priority = 4)
-    public void testSubIncorrectData(final Object num1, final Object num2) {
         new Calc().sub(num1, num2);
     }
 //endregion
